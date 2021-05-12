@@ -22,6 +22,7 @@
             <th class="text-center">SKU</th>
             <th class="text-center">TYPE</th>
             <th class="text-center">PRICE</th>
+            <th class="text-center">Admin Status</th>
             <th class="text-center">STATUS</th>
             <th>ACTION</th>
         </tr>
@@ -34,6 +35,7 @@
                 <td><?= $product->sku ?></td>
                 <td><?= $product->type_id ?></td>
                 <td><?= $product->price ?></td>
+                <td><?= $product->admin_status ?></td>
                 <td><?= $product->vendor_status ?></td>
                 <td><a href="<?= $this->getUrl('*/*/edit', ['id' => $product->entity_id]) ?>">EDIT</a></td>
             </tr>
