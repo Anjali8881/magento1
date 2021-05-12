@@ -1,7 +1,8 @@
 <?php
 
-$this->startSetup();
+// $this->startSetup();
 
-$this->installEntities();
+// $this->installEntities();
 
-$this->endSetup();
+// $this->endSetup();
+?>
