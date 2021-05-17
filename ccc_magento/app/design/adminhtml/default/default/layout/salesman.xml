@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout>
+     <salesman_adminhtml_salesman_attribute_edit>
+        <reference name="left">
+            <block type="salesman/adminhtml_salesman_attribute_edit_tabs" name="salesman_edit_tabs"></block>
+        </reference>
+        <reference name="content">
+            <block type="salesman/adminhtml_salesman_attribute_edit" name="salesman_edit_content"></block>
+        </reference>
+    </salesman_adminhtml_salesman_attribute_edit>
+
+
+    <salesman_adminhtml_salesman_edit>
+        <reference name="content">
+            <block type="salesman/adminhtml_salesman_edit" name="salesman_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="salesman/adminhtml_salesman_edit_tabs" name="salesman_tabs"></block>
+        </reference>
+    </salesman_adminhtml_salesman_edit>
+
+    <salesman_adminhtml_salesman_new>
+        <reference name="content">
+            <block type="salesman/adminhtml_salesman_edit_tab_settings" name="salesman_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="salesman/adminhtml_salesman_edit_tabs" name="salesman_tabs"></block>
+        </reference>
+    </salesman_adminhtml_salesman_new>
+
+</layout>
