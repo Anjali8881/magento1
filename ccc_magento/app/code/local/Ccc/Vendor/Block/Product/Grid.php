@@ -14,10 +14,10 @@ class Ccc_Vendor_Block_Product_Grid extends Mage_Core_Block_Template {
 		// die();
 		//$adminStore = Mage_Core_Model_App::ADMIN_STORE_ID;
 
-		$collection->joinAttribute('vendor_status', 'vendor_product/vendor_status', 'entity_id', null, 'inner');
-		$collection->joinAttribute('admin_status', 'vendor_product/admin_status', 'entity_id', null, 'left');
-		$collection->joinAttribute('price', 'vendor_product/price', 'entity_id', null, 'inner');
-		$collection->joinAttribute('name', 'vendor_product/name', 'entity_id', null, 'inner');
+		$collection->joinAttribute('vendor_status', 'vendor_product/vendor_status', 'entity_id', null, 'inner')->addFieldToFilter('entity_id', ['eq' => Mage::getSingleton('vendor/session')->getId()]);
+		$collection->joinAttribute('admin_status', 'vendor_product/admin_status', 'entity_id', null, 'left')->addFieldToFilter('entity_id', ['eq' => Mage::getSingleton('vendor/session')->getId()]);
+		$collection->joinAttribute('price', 'vendor_product/price', 'entity_id', null, 'inner')->addFieldToFilter('entity_id', ['eq' => Mage::getSingleton('vendor/session')->getId()]);
+		$collection->joinAttribute('name', 'vendor_product/name', 'entity_id', null, 'inner')->addFieldToFilter('entity_id', ['eq' => Mage::getSingleton('vendor/session')->getId()]);
 		//$collection->joinAttribute('admin_status', 'vendor_product/admin_status', 'entity_id', null, 'inner');
 
 		// echo "<pre>";
