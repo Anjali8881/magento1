@@ -8,8 +8,6 @@ class Ccc_Vendor_Block_Product_Grid extends Mage_Core_Block_Template {
 			->addAttributeToSelect('status')
 			->addAttributeToSelect('vendor_status');
 
-		// echo "<pre>";
-
 		// print_r($collection->getData());
 		// die();
 		//$adminStore = Mage_Core_Model_App::ADMIN_STORE_ID;
