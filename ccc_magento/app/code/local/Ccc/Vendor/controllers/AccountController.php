@@ -280,7 +280,7 @@ class Ccc_Vendor_AccountController extends Mage_Core_Controller_Front_Action {
 			$session->addError($message);
 		} catch (Exception $e) {
 			$session->setVendorFormData($this->getRequest()->getPost());
-			$session->addException($e, $this->__('Cannot save the vendor.'));
+			//$session->addException($e, $this->__('Cannot save the vendor.'));
 		}
 
 		$this->_redirectError($errUrl);
