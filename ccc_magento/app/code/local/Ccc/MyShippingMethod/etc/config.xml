@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Ccc_MyShippingMethod>
+            <version>0.0.1</version>
+        </Ccc_MyShippingMethod>
+    </modules>
+
+    <global>
+        <models>
+            <myshippingmethod>
+                <class>Ccc_MyShippingMethod_Model</class>
+            </myshippingmethod>
+        </models>
+        <helpers>
+            <myshippingmethod>
+                <class>Ccc_MyShippingMethod_Helper</class>
+            </myshippingmethod>
+        </helpers>
+        <!-- <blocks>
+            <myshippingmethod>
+                <class>Ccc_MyShippingMethod_Block</class>
+            </myshippingmethod>
+        </blocks> -->
+    </global>
+    <default>
+        <carriers>
+            <my_shippingmethod>
+                <active>1</active>
+                <model>myshippingmethod/carrier</model>
+                <title>Express Delivery</title>
+                <sort_order>10</sort_order>
+                <sallowspecific>0</sallowspecific>
+                <express_max_weight>1</express_max_weight>
+            </my_shippingmethod>
+        </carriers>
+    </default>
+</config>
