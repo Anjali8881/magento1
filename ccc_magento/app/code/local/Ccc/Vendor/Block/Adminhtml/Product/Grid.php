@@ -4,7 +4,7 @@ class Ccc_Vendor_Block_Adminhtml_Product_Grid extends Mage_Adminhtml_Block_Widge
 	function __construct() {
 		parent::__construct();
 		$this->setId('vendor_product_grid');
-		$this->setUseAjax(true);
+		//$this->setUseAjax(true);
 		$this->setDefaultDir('DESC');
 		$this->setSaveParametersInSession(true);
 
