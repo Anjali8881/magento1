@@ -101,6 +101,7 @@ class Ccc_Vendor_ProductController extends Mage_Core_Controller_Front_Action {
 				$model->setCreatedAt(date('Y-m-d H:i:s'));
 				$model->setUpdatedAt(date('Y-m-d H:i:s'));
 				$model->setVendorStatus('new');
+				$model->setAdminStatus('pending');
 				$model->setVendorId(Mage::helper('vendor')->_getSession()->getId());
 			} else {
 				$model = $model->load($id);
@@ -110,6 +111,7 @@ class Ccc_Vendor_ProductController extends Mage_Core_Controller_Front_Action {
 				$model->addData($data);
 				$model->setUpdatedAt(date('Y-m-d H:i:s'));
 				$model->setVendorStatus('edit');
+				$model->setAdminStatus('pending');
 			}
 			// echo "<pre>";
 			// print_r($model);
