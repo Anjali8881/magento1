@@ -932,7 +932,7 @@ class Ccc_Vendor_AccountController extends Mage_Core_Controller_Front_Action {
 				$this->_getSession()->setVendor($vendor)
 					->addSuccess($this->__('The Acount Information has been saved.'));
 
-				$this->_redirect('vendor/account/edit');
+				$this->_redirect('vendor/account/');
 				return;
 			} catch (Mage_Core_Exception $e) {
 				$this->_getSession()->setVendor($this->getRequest()->getPost())
