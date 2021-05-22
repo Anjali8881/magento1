@@ -133,7 +133,8 @@ class Ccc_Vendor_ProductController extends Mage_Core_Controller_Front_Action {
 	public function deleteAction() {
 		if ($id = $this->getRequest()->getParam('id')) {
 			$model = Mage::getModel('vendor/product')->load($id);
-			$model->saveVendorStatus('delete');
+			$model->setVendorStatus('delete');
+			$model->setAdminStatus('pending');
 			$model->save();
 
 			Mage::helper('vendor')->_getSession()->addSuccess($this->__('Vendor Product Delete Successfully'));
