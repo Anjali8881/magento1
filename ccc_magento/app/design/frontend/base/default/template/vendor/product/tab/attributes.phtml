@@ -15,12 +15,11 @@ $productId = $this->getRequest()->getParam('id');
 				<input type="number" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>" min="0"><em style="color: red">Please Enter Price Value Positive</em> 
 			<?php elseif($attribute->attribute_code == 'name'): ?>
 				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" class="required" required ><em style="color: red">*</em>
-					<?php elseif($attribute->attribute_code == 'sku'): ?>
-				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" class="required" required ><em style="color: red">*</em>
+
 			<?php elseif ($attribute->attribute_code == 'tier_price'): ?>
 				           <input type="number" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>" min="0"><em style="color: red">Please Enter Price Value Positive</em>
 			<?php elseif($productId && $attribute->attribute_code == 'sku'): ?>
-				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" disabled>
+				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" disabled class="required"><em style="color: red">*</em>
 			<?php else:?>
 			<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>">
 		<?php endif;?>
