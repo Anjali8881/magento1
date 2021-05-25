@@ -82,6 +82,48 @@ class Ccc_Vendor_ProductController extends Mage_Core_Controller_Front_Action {
 
 			$id = $this->getRequest()->getParam('id');
 			$data = $this->getRequest()->getPost();
+			$sku = $data['sku'];
+			$price = $data['price'];
+
+			if (!$data['name']) {
+				Mage::getSingleton('core/session')->addError("Please enter the product name");
+				$this->_redirect('*/*/edit');
+				return;
+			}
+			if (!$sku) {
+				Mage::getSingleton('core/session')->addError("Please enter the sku");
+				$this->_redirect('*/*/edit');
+				return;
+			}
+
+			if ($price < 0) {
+				Mage::getSingleton('core/session')->addError("Please enter the correct Price");
+				$this->_redirect('*/*/edit');
+				return;
+			}
+
+			if (!$price) {
+				Mage::getSingleton('core/session')->addError("Please enter the Price");
+				$this->_redirect('*/*/edit');
+				return;
+			}
+
+			$isSku = Mage::getModel('vendor/product')->getResource()->getSkuById($sku);
+
+			if (!$id) {
+
+				if ($isSku) {
+					Mage::getSingleton('core/session')->addError($this->__("Product SKU already exists!"));
+					$this->_redirect('*/*/edit');
+					return;
+				}
+				$existsCatalogProduct = Mage::getModel('catalog/product')->getResource()->getIdBySku($sku);
+				if ($existsCatalogProduct) {
+					Mage::getSingleton('core/session')->addError($this->__("Product SKU already exists!"));
+					$this->_redirect('*/*/edit');
+					return;
+				}
+			}
 			// echo "<pre>";
 			// print_r($data);
 			// die();
