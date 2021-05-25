@@ -1,6 +1,7 @@
 <?php 
 $attributes = $this->getAttributes();
 $productData = $this->getProduct(); 
+$productId = $this->getRequest()->getParam('id');
 ?>
 
 <?php foreach ($attributes as $attribute): ?>
@@ -8,9 +9,21 @@ $productData = $this->getProduct();
 		<?php $options = $attribute->getSource()->getAllOptions();?>
 	<?php endif ?>
 	<?php if ($attribute->frontend_input == 'text' && $attribute->frontend_label): ?>
-		<div>
+		<div> 
 			<label><?= $attribute->frontend_label ?></label>
+			<?php if($attribute->attribute_code == 'group_price'):?>
+				<input type="number" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>" min="0"><em style="color: red">Please Enter Price Value Positive</em> 
+			<?php elseif($attribute->attribute_code == 'name'): ?>
+				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" class="required" required ><em style="color: red">*</em>
+					<?php elseif($attribute->attribute_code == 'sku'): ?>
+				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" class="required" required ><em style="color: red">*</em>
+			<?php elseif ($attribute->attribute_code == 'tier_price'): ?>
+				           <input type="number" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>" min="0"><em style="color: red">Please Enter Price Value Positive</em>
+			<?php elseif($productId && $attribute->attribute_code == 'sku'): ?>
+				<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" disabled>
+			<?php else:?>
 			<input id="<?= $attribute->attribute_code ?>" type="<?= $attribute->frontend_input ?>" name="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>">
+		<?php endif;?>
 		</div>
 	<?php elseif($attribute->frontend_input == 'textarea'): ?>
 		<div>
@@ -35,21 +48,18 @@ $productData = $this->getProduct();
 	<?php elseif($attribute->frontend_input == 'multiselect'): ?>
 		<div>
 			<label><?= $attribute->frontend_label ?></label>
-			<select id="<?= $attribute->attribute_code ?>" name="<?= $attribute->attribute_code ?>" multiple>
+			<<?= $attribute->frontend_input ?> id="<?= $attribute->attribute_code ?>" name="<?= $attribute->attribute_code ?>">
 				<?php foreach ($options as $option): ?>
 					<option value=">?= $option['value'] ?>"><?= $option['label'] ?></option>
 				<?php endforeach ?>
-			</select>
+			</<?= $attribute->frontend_input ?>>
 		</div>
 
 	<?php elseif($attribute->frontend_input == 'price'): ?>
 		<div>
 			<label><?= $attribute->frontend_label ?></label>
-			<input type="text" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>">
+			<input class="required" type="number" id="<?= $attribute->attribute_code ?>" value="<?= $productData->getData($attribute->attribute_code) ?>" name="<?= $attribute->attribute_code ?>" min="0"><em style="color: red" required>*Please Enter Price Value Positive</em>            
 		</div>
-
 	<?php endif ?>
 
 <?php endforeach ?>
-
-
