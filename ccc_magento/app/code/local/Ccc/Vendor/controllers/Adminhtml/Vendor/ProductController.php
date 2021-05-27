@@ -63,6 +63,7 @@ class Ccc_Vendor_Adminhtml_Vendor_ProductController extends Mage_Adminhtml_Contr
 						->getEntityType('catalog_product')
 						->getDefaultAttributeSetId());
 				$catalogProduct->save();
+				$vendorProduct->setProductId($catalogProduct->getId());
 			} else if ($vendorProduct->getVendorStatus() == "delete") {
 				if ($vendorProduct->load($Id)) {
 					$vendorProduct->delete();
