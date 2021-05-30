@@ -1,0 +1,43 @@
+<?php $paymentMethod = $this->getPaymentMethod(); ?>
+<?php unset($paymentMethod['free']); ?>
+<div class="clear"></div>
+<div id="order-methods">
+    <div id="order-billing_method" class="box-right payments">
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <div style="float: right;"></div>
+                <h4 class="fieldset-legend head-payment-method icon-head">Payment Method</h4>
+                <div class="form-buttons">
+                    <button id="submit_order_top_button" type="button" onclick="checkPayment()" class="scalable save">
+                        <span><span><span>Update</span></span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="fieldset">
+                <div id="order-billing_method_form">
+                    <dl class="payment-methods">
+                        <dt>
+                            <?php if ($paymentMethod) : ?>
+                                <?php foreach ($paymentMethod as $key => $value) : ?>
+                                	<input type="radio" id = "paymentMethod" name="payment" value="<?php echo $value->getId(); ?>" <?php if($value->getId() == $this->fetchPaymentMethod()){echo "checked";} ?>>
+                                    <?php echo $value->getTitle(); ?><br>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <label for="p_method_free">No Payment Available</label>
+                            <?php endif; ?>
+                        </dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+   <script type="text/javascript">
+        function checkPayment() {
+            // var payment = document.getElementById('paymentMethod');
+            // if(payment.checked == false){
+            //     alert('Please select Payment Method');
+            //     return false;
+            // }
+            changeAction('<?php echo $this->getPaymentMethodUrl() ?>');
+    }   
+</script>

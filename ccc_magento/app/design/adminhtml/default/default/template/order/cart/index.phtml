@@ -1,0 +1,106 @@
+<form id="cartForm" action="<?php echo $this->getUrl('*/*/index'); ?>" method="POST">
+	<?php echo $this->getBlockHtml('formkey'); ?>
+	 <div class="form-buttons">
+            <button id="submit_order_top_button" type="button" onclick="goBack()" class="scalable back" style="float: right;">
+            	<span><span><span>Back</span></span></span>
+            </button>
+    </div>
+    <br>
+	<div class="page-create-order">
+		<table width="100%" align="center">
+			<tr>
+				<td>
+					<div id="cartItems">
+    				<?php echo $this->getChild('items')->setCart($this->getCart())->toHtml() ?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="productGridContent" style="display: none;">
+    				<?php echo $this->getChild('product')->setCart($this->getCart())->toHtml() ?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="accountContent">
+						<?php echo $this->getChild('account')->setCart($this->getCart())->toHtml(); ?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="addressContent">
+						<?php echo $this->getChild('address')->setCart($this->getCart())->toHtml() ?>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div id="cart-methods">
+			
+						<div id="cart-billing_method"><?php echo $this->getChild('paymentmethod')->setCart($this->getCart())->toHtml() ?>
+				     	</div>
+						<div id="cart-shipping_method"><?php echo $this->getChild('shippingmethod')->setCart($this->getCart())->toHtml() ?></div>
+			
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+		 			<div class="row mt-5">
+						<div id="cartDetails">
+							<?php echo $this->getChild('cartDetails')->setCart($this->getCart())->toHtml() ?>
+						</div>
+					</div>  
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+<script type="text/javascript">
+	
+	function showProductGrid() {
+		document.getElementById('productGridContent').style.display = 'block';
+	}
+	function changeAction(value) {
+        form = document.getElementById('cartForm');
+        form.action = value;
+        form.submit();
+    }
+
+    function validate(url,method = ''){
+        tbodys = document.getElementById('shipping').children[0];
+        tbodyb = document.getElementById('billing').children[0];
+        checkbox = document.getElementById('sameAsBillingcheck').checked;
+        if(!checkbox){
+            if(method == 's' || method==''){
+                for(i=0;i<7;i++){
+                    if(tbodys.children[i].children[1].children[0].value == ''){
+                        alert("Please Fill All The Field");
+                        return false;
+                    }
+                }
+            }
+        }
+        if(method == 'b' || method==''){
+            for(i=0;i<7;i++){
+                if(tbodyb.children[i].children[1].children[0].value == ''){
+                    alert("Please Fill All The Field Of Address");
+                    return false;
+                }
+            }
+        }
+        changeAction(url);
+    }
+
+    function goBack() {
+    	confirm = confirm('Are you sure?');
+    	if(confirm){
+    		changeAction('<?php echo $this->getBackUrl() ?>');
+    	}
+    	return false;	
+    }
+</script>
