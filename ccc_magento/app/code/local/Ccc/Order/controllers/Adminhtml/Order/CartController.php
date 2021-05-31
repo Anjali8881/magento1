@@ -64,7 +64,7 @@ class Ccc_Order_Adminhtml_Order_CartController extends Mage_Adminhtml_Controller
 				$product = Mage::getModel('catalog/product')->load($id);
 
 				if (in_array($id, $itemId)) {
-					$cartItem = Mage::getModel('order/order_cart_item')->load($id);
+					$cartItem = Mage::getModel('order/order_cart_item')->load(array_search($id, $itemId));
 					$cartItem->quantity++;
 					$price = $this->calculatePrice($cartItem->getBasePrice(), $cartItem->getQuantity());
 					$cartItem->setPrice($price);
