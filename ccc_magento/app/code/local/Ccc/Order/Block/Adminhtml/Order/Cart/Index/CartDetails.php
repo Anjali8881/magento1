@@ -24,7 +24,7 @@ class Ccc_Order_Block_Adminhtml_Order_Cart_Index_CartDetails extends Mage_Adminh
 		$cart = $this->getCart();
 		$items = $cart->getItems();
 		foreach ($items as $key => $item) {
-			$this->subtotal += $this->getTotalByQuantityPrice($item['quantity'], $item['price']);
+			$this->subtotal += $this->getTotalByQuantityPrice($item['quantity'], $item['base_price']);
 		}
 		return $this;
 	}
