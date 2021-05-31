@@ -199,7 +199,7 @@ class Ccc_Order_Adminhtml_Order_CartController extends Mage_Adminhtml_Controller
 		$total = 0;
 		if ($items) {
 			foreach ($items as $key => $item) {
-				$total += $this->calculatePrice($item['quantity'], $item['price']);
+				$total += $this->calculatePrice($item['quantity'], $item['base_price']);
 			}
 		}
 		$total += $shipping;
