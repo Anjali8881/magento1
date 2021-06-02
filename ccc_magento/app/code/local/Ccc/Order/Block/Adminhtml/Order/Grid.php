@@ -63,27 +63,27 @@ class Ccc_Order_Block_Adminhtml_Order_Grid extends Mage_Adminhtml_Block_Widget_G
 			'index' => 'payment_code',
 		));
 
-		// if (Mage::getSingleton('admin/session')->isAllowed('order/order/actions/view')) {
-		// 	$this->addColumn('action',
-		// 		array(
-		// 			'header' => Mage::helper('order')->__('Action'),
-		// 			'width' => '50px',
-		// 			'type' => 'action',
-		// 			'getter' => 'getId',
-		// 			'actions' => array(
-		// 				array(
-		// 					'caption' => Mage::helper('order')->__('View'),
-		// 					'url' => array('base' => '*/order_order/view'),
-		// 					'field' => 'order_id',
-		// 					'data-column' => 'action',
-		// 				),
-		// 			),
-		// 			'filter' => false,
-		// 			'sortable' => false,
-		// 			'index' => 'stores',
-		// 			'is_system' => true,
-		// 		));
-		// }
+		if (Mage::getSingleton('admin/session')->isAllowed('order/order/actions/view')) {
+			$this->addColumn('action',
+				array(
+					'header' => Mage::helper('order')->__('Action'),
+					'width' => '50px',
+					'type' => 'action',
+					'getter' => 'getId',
+					'actions' => array(
+						array(
+							'caption' => Mage::helper('order')->__('View'),
+							'url' => array('base' => '*/adminhtml_order/view'),
+							'field' => 'order_id',
+							'data-column' => 'action',
+						),
+					),
+					'filter' => false,
+					'sortable' => false,
+					'index' => 'stores',
+					'is_system' => true,
+				));
+		}
 		$this->addRssList('rss/order/new', Mage::helper('order')->__('New Order RSS'));
 
 		$this->addExportType('*/*/exportCsv', Mage::helper('order')->__('CSV'));
@@ -91,9 +91,9 @@ class Ccc_Order_Block_Adminhtml_Order_Grid extends Mage_Adminhtml_Block_Widget_G
 		return parent::_prepareColumns();
 	}
 
-	// public function getRowUrl($row) {
-	// 	return $this->getUrl('*/adminhtml_order/view', array('order_id' => $row->getId()));
-	// }
+	public function getRowUrl($row) {
+		return $this->getUrl('*/adminhtml_order/view', array('order_id' => $row->getId()));
+	}
 
 	public function getGridUrl() {
 		return $this->getUrl('*/*/', array('_current' => true));

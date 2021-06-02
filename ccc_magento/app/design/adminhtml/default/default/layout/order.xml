@@ -28,9 +28,12 @@
         <reference name="content">
         <block type="order/adminhtml_view" name="view">
             <block type="order/adminhtml_customer" name="order_customer" />
-            <block type="order/adminhtml_products" name="order_product" />
+            <block type="order/adminhtml_product" name="order_product" />
             <block type="order/adminhtml_address" name="order_address"/>
-            <block type="order/adminhtml_orderDetails" name="order_details" template="order/orderdetails.phtml"/>
+            <block type="order/adminhtml_payment" name="order_payment"/>
+            <block type="order/adminhtml_shipment" name="order_shipment"/>
+            <block type="order/adminhtml_comment" name="order_comment"/>
+            <block type="order/adminhtml_orderDetails" name="order_details" />
         </block>
     </reference>
     </order_adminhtml_order_view>

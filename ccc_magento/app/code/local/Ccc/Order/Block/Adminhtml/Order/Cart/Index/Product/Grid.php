@@ -40,6 +40,7 @@ class Ccc_Order_Block_Adminhtml_Order_Cart_Index_Product_Grid extends Mage_Admin
 			'label' => Mage::helper('order')->__('Add To Cart'),
 			'url' => $this->getUrl('*/adminhtml_order_cart/addtocart', array('_current' => true)),
 			'confirm' => Mage::helper('order')->__('Are you sure?'),
+			'selected' => true,
 		));
 		return $this;
 	}

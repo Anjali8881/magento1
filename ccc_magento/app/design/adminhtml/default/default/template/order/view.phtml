@@ -1,16 +1,18 @@
+<form id="viewForm" action="<?php echo $this->getUrl('order/adminhtml_order/index'); ?>">
 <div class="container">
 	<div class="form-buttons">
             <button id="submit_order_top_button" type="button" onclick="goBack()" class="scalable back" style="float: right;">
             	<span><span><span>Back</span></span></span>
             </button>
     </div>
-	<div class="row mt-4">
+    <br>
+	<div class="row mt-4" style="margin-top: 4px;">
 		<div class="col-md-10 offset-md-1">
 			<?php echo $this->getChild('order_customer')->toHtml() ?>
 		</div>
 	</div>
 	<div class="row mt-4">
-		<div class="col" style="overflow-y: scroll; height: 200px" id="orderProductContent">
+		<div class="col" style="height: 200px" id="orderProductContent">
 			<?php echo $this->getChild('order_product')->toHtml() ?>
 		</div>
 	</div>
@@ -20,15 +22,42 @@
 		</div>
 	</div>
 	<div class="row mt-5">
+		<div class="col col-md-10 offset-md-1" id="paymentContent">
+			<?php echo $this->getChild('order_payment')->toHtml() ?>
+		</div>
+	</div>
+	<div class="row mt-5">
+		<div class="col col-md-10 offset-md-1" id="shipmentContent">
+			<?php echo $this->getChild('order_shipment')->toHtml() ?>
+		</div>
+	</div>
+	<div class="row mt-5">
+		<div class="col col-md-10 offset-md-1" id="commentContent">
+			<?php echo $this->getChild('order_comment')->toHtml() ?>
+		</div>
+	</div>
+	<div class="row mt-5">
 		<div class="col col-md-5 border offset-md-1" id="productOrderDetails">
 			<?php echo $this->getChild('order_details')->toHtml() ?>
 		</div>
 	</div>
 
 </div>
+</form>
 
 <script type="text/javascript">
+	
 	function goBack() {
-		<?php $this->getUrl('*/*/index');?>		
-	}
+    	confirm = confirm('Are you sure?');
+    	if(confirm){
+    		changeAction('<?php echo $this->getBackUrl() ?>');
+    	}
+    	return false;	
+    }
+
+    function changeAction(value) {
+        form = document.getElementById('viewForm');
+        form.action = value;
+        form.submit();
+    }
 </script>
